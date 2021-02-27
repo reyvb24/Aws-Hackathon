@@ -2,15 +2,16 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'loading.dart';
 
-class LogIn extends StatefulWidget {
+class Register extends StatefulWidget {
   @override
-  _LogInState createState() => _LogInState();
+  _RegisterState createState() => _RegisterState();
 }
 
-class _LogInState extends State<LogIn> {
+class _RegisterState extends State<Register> {
   bool loading = false;
   String email;
   String password;
+  String passwordConfirm;
   TextStyle linkStyle = TextStyle(color: Colors.blue);
   TextStyle defaultStyle = TextStyle(color: Colors.grey, fontSize: 5.0);
   final _formKey = GlobalKey<FormState>();
@@ -21,26 +22,6 @@ class _LogInState extends State<LogIn> {
         ? Loading()
         : Scaffold(
             backgroundColor: const Color(0xfffae6b1),
-            // appBar: AppBar(
-            //     backgroundColor: const Color(0xfffae6b1),
-            //     elevation: 1.0,
-            //     title: Text(
-            //       "BOTELLE",
-            //       style: TextStyle(
-            //         fontSize: 25.0,
-            //         fontWeight: FontWeight.bold,
-            //         color: Colors.grey[800],
-            //         fontFamily: "KronaOne",
-            //       ),
-            //     ),
-            //     actions: <Widget>[
-            //       FlatButton.icon(
-            //           icon: Icon(Icons.person),
-            //           label: Text('Register'),
-            //           onPressed: () {
-            //             // widget.toggleView();
-            //           })
-            //     ]),
             body: Container(
               padding: EdgeInsets.symmetric(vertical: 20, horizontal: 50),
               child: Form(
@@ -113,6 +94,32 @@ class _LogInState extends State<LogIn> {
                             }),
                       ),
                     ),
+                    SizedBox(height: 10.0),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Colors.grey[300],
+                        borderRadius: new BorderRadius.circular(18.0),
+                      ),
+                      // Image(image: AssetImage('assets/patungkuy.png')),
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 15, right: 15, top: 5),
+                        child: TextFormField(
+                            // decoration: textInputDecoration.copyWith(hintText: 'Password'),
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              labelText: "Confirm Password",
+                            ),
+                            validator: (val) => val != password
+                                ? "Password does not match!"
+                                : null,
+                            obscureText: true,
+                            onChanged: (val) {
+                              setState(() {
+                                // password = val;
+                              });
+                            }),
+                      ),
+                    ),
                     SizedBox(height: 20.0),
                     Padding(
                       padding: const EdgeInsets.all(10),
@@ -131,34 +138,13 @@ class _LogInState extends State<LogIn> {
                             }
                           },
                           child: Text(
-                            'SIGN IN',
+                            'REGISTER',
                             style: TextStyle(color: Colors.white),
                           ),
                           shape: RoundedRectangleBorder(
                               borderRadius: new BorderRadius.circular(40.0),
                               side: BorderSide(color: Colors.green)),
                         ),
-                      ),
-                    ),
-                    RichText(
-                      text: TextSpan(
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: "To create an account, ",
-                            style: TextStyle(color: Colors.grey),
-                          ),
-                          TextSpan(
-                              text: 'Sign Up ',
-                              style: linkStyle,
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () {
-                                  print('Terms of Service"');
-                                }),
-                          TextSpan(
-                            text: "here!",
-                            style: TextStyle(color: Colors.grey),
-                          ),
-                        ],
                       ),
                     ),
                   ]),

@@ -136,10 +136,12 @@ class _SubscriptionsState extends State<Subscriptions> {
                                                             Navigator.of(
                                                                     context)
                                                                 .pop();
-                                                            plans[index]
-                                                                    .subscribed =
-                                                                true;
-                                                            subscribed = true;
+                                                            setState(() {
+                                                              plans[index]
+                                                                      .subscribed =
+                                                                  true;
+                                                              subscribed = true;
+                                                            });
                                                           },
                                                           child: const Text(
                                                               'OK',
@@ -178,13 +180,11 @@ class _SubscriptionsState extends State<Subscriptions> {
                             ),
                           ),
                           if (plans[index].subscribed == true)
-                            Text(
-                              " You have subscribed to this plan",
-                              style: TextStyle(
-                                color: Colors.grey[700],
-                                fontSize: 16,
-                              ),
-                            ),
+                            Text(" You have subscribed to this plan",
+                                style: TextStyle(
+                                  color: Colors.grey[700],
+                                  fontSize: 16,
+                                ))
                         ]),
                   )
                   // ],
