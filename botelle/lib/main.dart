@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'home.dart';
+import 'home.dart';
 
 void main() {
-  runApp(Botelle());
+  runApp(MaterialApp(home: Home()));
 }
 
-class Botelle extends StatelessWidget {
+class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "Botelle",
-      home: Home(),
-    );
+    return Scaffold();
   }
 }
