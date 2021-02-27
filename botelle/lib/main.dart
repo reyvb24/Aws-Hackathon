@@ -1,3 +1,4 @@
+import 'package:botelle/qrscanner.dart';
 import 'package:botelle/subscriptions.dart';
 import 'package:flutter/material.dart';
 import 'home.dart';

@@ -13,7 +13,12 @@ class Merchant {
 }
 
 class _HomeState extends State<Home> {
-  List<String> merchantList = ["heytea", "sharetea", "starbucks"];
+  List<Merchant> merchantList = [
+    Merchant(name: "HeyTea", imagePath: "heytea.jpg"),
+    Merchant(name: "ShareTea", imagePath: "sharetea.png"),
+    Merchant(name: "Starbucks", imagePath: "starbucks.png")
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,52 +46,50 @@ class _HomeState extends State<Home> {
       ),
       body: Column(children: <Widget>[
         Container(
-            height: 160.0,
-            margin: EdgeInsets.all(20.0),
-            child:
-                ListView(scrollDirection: Axis.horizontal, children: <Widget>[
-              Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: new BorderRadius.circular(18.0),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey,
-                        offset: Offset(0.0, 1.0), //(x,y)
-                        blurRadius: 6.0,
+          height: 160.0,
+          margin: EdgeInsets.all(20.0),
+          child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: merchantList.length,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.only(right: 15.0),
+                  child: Container(
+                    child: ListTile(
+                      onTap: () {},
+                    ),
+                    width: MediaQuery.of(context).size.width * 2 / 3,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        // fit: BoxFit.cover, //I assumed you want to occupy the entire space of the card
+                        image: AssetImage(
+                            'assets/${merchantList[index].imagePath}'),
                       ),
-                    ],
+                      color: Colors.white,
+                      borderRadius: new BorderRadius.circular(18.0),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey,
+                          offset: Offset(0.0, 1.0), //(x,y)
+                          blurRadius: 6.0,
+                        ),
+                      ],
+                    ),
                   ),
-                  child: Image(
-                    image: AssetImage('assets/heytea.jpg'),
-                  ),
-                  width: MediaQuery.of(context).size.width * 2 / 3),
-              SizedBox(width: MediaQuery.of(context).size.width * 1 / 20),
-              Container(
-                  color: Colors.white,
-                  child: Image(
-                    image: AssetImage('assets/starbucks.png'),
-                  ),
-                  width: MediaQuery.of(context).size.width * 2 / 3),
-              SizedBox(width: MediaQuery.of(context).size.width * 1 / 20),
-              Container(
-                  color: Colors.white,
-                  child: Image(
-                    image: AssetImage('assets/sharetea.png'),
-                  ),
-                  width: MediaQuery.of(context).size.width * 2 / 3),
-              SizedBox(width: MediaQuery.of(context).size.width * 1 / 20),
-              Container(
-                  color: Colors.amber,
-                  width: MediaQuery.of(context).size.width * 2 / 3),
-            ])),
+                );
+              }),
+        ),
         Center(
-            child: Container(
-          height: MediaQuery.of(context).size.height * 1 / 4,
-          width: MediaQuery.of(context).size.width * 8 / 9,
-          color: Colors.amberAccent,
-        ))
+          child: Container(
+            height: MediaQuery.of(context).size.height * 1 / 4,
+            width: MediaQuery.of(context).size.width * 8 / 9,
+            color: Colors.amberAccent,
+          ),
+        ),
       ]),
+      // bottomNavigationBar: BottomNavigationBar(
+
+      // ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {},
         icon: Icon(Icons.attach_money),
@@ -101,7 +104,7 @@ class _HomeState extends State<Home> {
         ),
         backgroundColor: const Color(0xffffa101),
       ),
-      //drawer: Drawer(),
     );
+    // drawer: Drawer(),
   }
 }
