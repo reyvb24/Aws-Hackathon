@@ -2,22 +2,27 @@ import 'package:flutter/material.dart';
 import 'home.dart';
 
 void main() {
-  runApp(Botelle());
+  runApp(MaterialApp(home: Botelle()));
 }
 
-class Botelle extends StatelessWidget {
+class Botelle extends StatefulWidget {
+  @override
+  _BotelleState createState() => _BotelleState();
+}
+
+class _BotelleState extends State<Botelle> {
   Widget build(BuildContext context) {
-    return MaterialApp(
-        title: "Botelle",
-        home: Scaffold(
-          appBar: AppBar(
-            title: Text("Botelle"),
-            centerTitle: true,
-          ),
-          body: Center(),
-          floatingActionButton: FloatingActionButton(
-            child: Text("Pay"),
-          ),
-        ));
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Botelle"),
+        centerTitle: true,
+        backgroundColor: Colors.deepOrange[600],
+      ),
+      body: Center(),
+      floatingActionButton: FloatingActionButton(
+        child: Text("Pay"),
+      ),
+      drawer: Drawer(),
+    );
   }
 }
