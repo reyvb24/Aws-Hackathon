@@ -30,15 +30,24 @@ class _HomeState extends State<Home> {
             child:
                 ListView(scrollDirection: Axis.horizontal, children: <Widget>[
               Container(
-                  color: Colors.cyanAccent,
+                  color: Colors.white,
+                  child: Image(
+                    image: AssetImage('assets/heytea.jpg'),
+                  ),
                   width: MediaQuery.of(context).size.width * 2 / 3),
               SizedBox(width: MediaQuery.of(context).size.width * 1 / 20),
               Container(
-                  color: Colors.black,
+                  color: Colors.white,
+                  child: Image(
+                    image: AssetImage('assets/starbucks.png'),
+                  ),
                   width: MediaQuery.of(context).size.width * 2 / 3),
               SizedBox(width: MediaQuery.of(context).size.width * 1 / 20),
               Container(
-                  color: Colors.blueAccent,
+                  color: Colors.white,
+                  child: Image(
+                    image: AssetImage('assets/sharetea.png'),
+                  ),
                   width: MediaQuery.of(context).size.width * 2 / 3),
               SizedBox(width: MediaQuery.of(context).size.width * 1 / 20),
               Container(
