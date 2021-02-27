@@ -20,8 +20,16 @@ class _HomeState extends State<Home> {
             fontFamily: "KronaOne",
           ),
         ),
-        centerTitle: true,
+        // centerTitle: true,
         backgroundColor: const Color(0xfffae6b1),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.account_circle),
+            color: Colors.grey[800],
+            tooltip: "Show profile",
+            onPressed: () {},
+          )
+        ],
       ),
       body: Column(children: <Widget>[
         Container(
@@ -61,12 +69,21 @@ class _HomeState extends State<Home> {
           color: Colors.amberAccent,
         ))
       ]),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton.extended(
         onPressed: () {},
-        child: Text("Pay"),
+        icon: Icon(Icons.attach_money),
+        label: Text(
+          "Pay",
+          style: TextStyle(
+            fontSize: 17.0,
+            //fontWeight: FontWeight.bold,
+            //color: Colors.grey[800],
+            //fontFamily: "KronaOne",
+          ),
+        ),
         backgroundColor: const Color(0xffffa101),
       ),
-      drawer: Drawer(),
+      //drawer: Drawer(),
     );
   }
 }
