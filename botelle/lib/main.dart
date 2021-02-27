@@ -4,10 +4,10 @@ import 'loading.dart';
 import 'login.dart';
 
 void main() {
-  runApp(Botelle());
+  runApp(MaterialApp(home: Home()));
 }
 
-class Botelle extends StatelessWidget {
+class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Botelle",
