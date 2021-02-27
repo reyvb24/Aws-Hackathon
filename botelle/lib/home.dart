@@ -87,6 +87,9 @@ class _HomeState extends State<Home> {
           ),
         ),
       ]),
+      // bottomNavigationBar: BottomNavigationBar(
+
+      // ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {},
         icon: Icon(Icons.attach_money),

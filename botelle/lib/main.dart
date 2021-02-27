@@ -1,3 +1,4 @@
+import 'package:botelle/qrscanner.dart';
 import 'package:botelle/subscriptions.dart';
 import 'package:flutter/material.dart';
 import 'home.dart';
@@ -6,7 +7,7 @@ import 'login.dart';
 import 'profile.dart';
 
 void main() {
-  runApp(MaterialApp(home: Home()));
+  runApp(MaterialApp(home: QRScannner()));
 }
 
 class MyApp extends StatelessWidget {
