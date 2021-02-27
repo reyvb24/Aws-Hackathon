@@ -60,7 +60,7 @@ class _HomeState extends State<Home> {
               title: Text(titles[1]),
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.star_border),
+              icon: Icon(Icons.star),
               title: Text(titles[2]),
             )
           ],
