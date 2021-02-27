@@ -20,6 +20,12 @@ class _MerchantsState extends State<Merchants> {
     Merchant(name: "Starbucks", imagePath: "starbucks.png")
   ];
 
+  int bottleSaved = 0;
+
+  void Incrementor(int n) {
+    bottleSaved += 1;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,6 +91,9 @@ class _MerchantsState extends State<Merchants> {
             height: MediaQuery.of(context).size.height * 1 / 4,
             width: MediaQuery.of(context).size.width * 8 / 9,
             color: Colors.amberAccent,
+            child: Text(
+              "You have eliminated $bottleSaved plastic bottles",
+            ),
           ),
         ),
       ]),
