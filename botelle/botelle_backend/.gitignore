@@ -1,0 +1,15 @@
+__pycache__/
+venv/
+ve/
+.vscode/
+.idea/
+server/.*_cache
+config_*.json
+service_key.json
+.*_cache/
+
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

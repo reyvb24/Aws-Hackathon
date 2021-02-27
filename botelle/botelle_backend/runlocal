@@ -1,0 +1,5 @@
+#!/bin/sh
+export ENV=Local
+export FIREBASE_WEB_API_KEY=AIzaSyAG4wzXAubRVbRQyWv5ircB_7lzlfXptIo
+export GOOGLE_APPLICATION_CREDENTIALS="service_key.json"
+python3 server/main.py

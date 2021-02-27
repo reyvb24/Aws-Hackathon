@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+set -e  # exit on any error
+
+if [ "$1" == "--check-only" ]; then
+    check_only=1
+fi
+
+# Static type checker - see setup.cfg for exclusion list
+echo "running mypy..."
+mypy server/ --namespace-packages
+
+echo "running flake8..."
+FILES_TO_CHANGE=$(flake8 . | tee /dev/stderr | cut -d':' -f1 | sort | uniq)
+
+if [[ -n "$FILES_TO_CHANGE" ]]; then
+   if [ -z "$check_only" ]; then
+      # Change files ignoring importing
+      echo "running autopep8..."
+      autopep8 $FILES_TO_CHANGE --in-place -a -a --ignore E402
+      echo "Automatically fixed files:"
+      echo $FILES_TO_CHANGE
+   fi
+   exit 42
+fi
+
+
+if [[ -n "$RUN_PYLINT" ]]; then
+    pylint badges categories goals helpers \
+           tags userBadges users usersGoals followers
+fi
+
+echo "checkstyle done!"

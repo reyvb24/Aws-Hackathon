@@ -5,7 +5,15 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
+class Merchant {
+  String name;
+  String imagePath;
+
+  Merchant({this.name, this.imagePath});
+}
+
 class _HomeState extends State<Home> {
+  List<String> merchantList = ["heytea", "sharetea", "starbucks"];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +46,17 @@ class _HomeState extends State<Home> {
             child:
                 ListView(scrollDirection: Axis.horizontal, children: <Widget>[
               Container(
-                  color: Colors.white,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: new BorderRadius.circular(18.0),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey,
+                        offset: Offset(0.0, 1.0), //(x,y)
+                        blurRadius: 6.0,
+                      ),
+                    ],
+                  ),
                   child: Image(
                     image: AssetImage('assets/heytea.jpg'),
                   ),

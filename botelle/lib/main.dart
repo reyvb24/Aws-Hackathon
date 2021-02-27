@@ -6,7 +6,7 @@ import 'login.dart';
 import 'profile.dart';
 
 void main() {
-  runApp(MaterialApp(home: Profile()));
+  runApp(MaterialApp(home: Home()));
 }
 
 class MyApp extends StatelessWidget {
