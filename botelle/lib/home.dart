@@ -41,11 +41,17 @@ class _HomeState extends State<Home> {
         backgroundColor: const Color(0xfffae6b1),
         actions: <Widget>[
           IconButton(
+            icon: const Icon(Icons.search),
+            color: Colors.grey[800],
+            tooltip: "Search",
+            onPressed: () {},
+          ),
+          IconButton(
             icon: const Icon(Icons.account_circle),
             color: Colors.grey[800],
             tooltip: "Show profile",
             onPressed: () {},
-          )
+          ),
         ],
       ),
       body: tabs[_currentIndex],

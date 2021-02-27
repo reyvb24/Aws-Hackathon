@@ -51,6 +51,13 @@ class _MerchantsState extends State<Merchants> {
       //   ],
       // ),
       body: Column(children: <Widget>[
+        SizedBox(
+          height: 20,
+        ),
+        Text(
+          'Promotions',
+          style: TextStyle(fontSize: 15),
+        ),
         Container(
           height: 160.0,
           margin: EdgeInsets.all(20.0),
@@ -89,19 +96,48 @@ class _MerchantsState extends State<Merchants> {
           child: Container(
             height: MediaQuery.of(context).size.height * 1 / 4,
             width: MediaQuery.of(context).size.width * 8 / 9,
-            color: Colors.amberAccent,
+            decoration: BoxDecoration(
+                color: const Color(0xff31525b),
+                borderRadius: new BorderRadius.circular(18),
+                image: DecorationImage(
+                    image: AssetImage('assets/citrus2.jpg'), fit: BoxFit.fill)),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(20.0, 20.0, 100, 0),
+              child: Text(
+                "You have helped eliminate\n100\nplastic bottles!",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 30.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+        ),
+        SizedBox(
+          height: 16,
+        ),
+        Container(
+          height: MediaQuery.of(context).size.height * 1 / 4,
+          width: MediaQuery.of(context).size.width * 8 / 9,
+          decoration: BoxDecoration(
+              color: const Color(0xff31525b),
+              borderRadius: new BorderRadius.circular(18),
+              image: DecorationImage(
+                  image: AssetImage('assets/citrus.jpg'), fit: BoxFit.fill)),
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(20.0, 120.0, 100, 0),
             child: Text(
-              "You have eliminated $currentBottle plastic bottles",
+              "Donate now!",
               style: TextStyle(
-                fontSize: 35,
+                color: Colors.white,
+                fontSize: 35.0,
+                fontWeight: FontWeight.bold,
               ),
             ),
           ),
         ),
       ]),
-      // bottomNavigationBar: BottomNavigationBar(
-
-      // ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           print("Paid");
