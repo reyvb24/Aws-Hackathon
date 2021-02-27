@@ -5,6 +5,7 @@ import 'home.dart';
 import 'loading.dart';
 import 'login.dart';
 import 'profile.dart';
+import 'merchants.dart';
 
 void main() {
   runApp(MaterialApp(home: Home()));

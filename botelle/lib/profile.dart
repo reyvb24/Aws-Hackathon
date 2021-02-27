@@ -74,7 +74,7 @@ class _ProfileState extends State<Profile> {
             ),
             SizedBox(height: 10),
             Text(
-              'Rp 10,000,00',
+              'Rp 20,000,00',
               style: TextStyle(
                 fontSize: 24,
               ),

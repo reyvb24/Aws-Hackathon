@@ -23,19 +23,19 @@ class _SubscriptionsState extends State<Subscriptions> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[100],
-      appBar: AppBar(
-        title: Text(
-          "BOTELLE",
-          style: TextStyle(
-            fontSize: 25.0,
-            fontWeight: FontWeight.bold,
-            color: Colors.grey[800],
-            fontFamily: "KronaOne",
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: const Color(0xfffae6b1),
-      ),
+      // appBar: AppBar(
+      //   title: Text(
+      //     "BOTELLE",
+      //     style: TextStyle(
+      //       fontSize: 25.0,
+      //       fontWeight: FontWeight.bold,
+      //       color: Colors.grey[800],
+      //       fontFamily: "KronaOne",
+      //     ),
+      //   ),
+      //   centerTitle: true,
+      //   backgroundColor: const Color(0xfffae6b1),
+      // ),
       body: ListView.builder(
           itemCount: plans.length,
           itemBuilder: (context, index) {
