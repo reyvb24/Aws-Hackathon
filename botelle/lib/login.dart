@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'loading.dart';
 
@@ -8,6 +9,8 @@ class LogIn extends StatefulWidget {
 
 class _LogInState extends State<LogIn> {
   bool loading = false;
+  TextStyle linkStyle = TextStyle(color: Colors.blue);
+  TextStyle defaultStyle = TextStyle(color: Colors.grey, fontSize: 5.0);
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -15,34 +18,53 @@ class _LogInState extends State<LogIn> {
     return loading
         ? Loading()
         : Scaffold(
-            backgroundColor: Colors.white,
-            appBar: AppBar(
-                backgroundColor: Colors.blue[300],
-                elevation: 20.0,
-                title: Text('Sign in to Botelle'),
-                actions: <Widget>[
-                  FlatButton.icon(
-                      icon: Icon(Icons.person),
-                      label: Text('Register'),
-                      onPressed: () {
-                        // widget.toggleView();
-                      })
-                ]),
+            backgroundColor: const Color(0xfffae6b1),
+            // appBar: AppBar(
+            //     backgroundColor: const Color(0xfffae6b1),
+            //     elevation: 1.0,
+            //     title: Text(
+            //       "BOTELLE",
+            //       style: TextStyle(
+            //         fontSize: 25.0,
+            //         fontWeight: FontWeight.bold,
+            //         color: Colors.grey[800],
+            //         fontFamily: "KronaOne",
+            //       ),
+            //     ),
+            //     actions: <Widget>[
+            //       FlatButton.icon(
+            //           icon: Icon(Icons.person),
+            //           label: Text('Register'),
+            //           onPressed: () {
+            //             // widget.toggleView();
+            //           })
+            //     ]),
             body: Container(
               padding: EdgeInsets.symmetric(vertical: 20, horizontal: 50),
               child: Form(
                 key: _formKey,
                 child: SingleChildScrollView(
                   child: Column(children: <Widget>[
+                    SizedBox(height: 100.0),
+                    Text(
+                      "BOTELLE",
+                      style: TextStyle(
+                        fontSize: 40.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey[800],
+                        fontFamily: "KronaOne",
+                      ),
+                    ),
+                    SizedBox(height: 25.0),
                     Image(
                       image: AssetImage('assets/bottle_logo.png'),
                       height: 291.3,
                       width: 106,
                     ),
-                    SizedBox(height: 20.0),
+                    SizedBox(height: 40.0),
                     Container(
                       decoration: BoxDecoration(
-                        color: Colors.grey[300],
+                        color: Colors.grey[50],
                         borderRadius: new BorderRadius.circular(18.0),
                       ),
                       // Image(image: AssetImage('assets/patungkuy.png')),
@@ -114,6 +136,27 @@ class _LogInState extends State<LogIn> {
                               borderRadius: new BorderRadius.circular(40.0),
                               side: BorderSide(color: Colors.green)),
                         ),
+                      ),
+                    ),
+                    RichText(
+                      text: TextSpan(
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: "To create an account, ",
+                            style: TextStyle(color: Colors.grey),
+                          ),
+                          TextSpan(
+                              text: 'Sign Up ',
+                              style: linkStyle,
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  print('Terms of Service"');
+                                }),
+                          TextSpan(
+                            text: "here!",
+                            style: TextStyle(color: Colors.grey),
+                          ),
+                        ],
                       ),
                     ),
                   ]),
