@@ -114,14 +114,45 @@ Widget _buildPopupDialog(BuildContext context) {
         ]),
     actions: <Widget>[
       new FlatButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          // textColor: Theme.of(context).primaryColor,
+          child: const Text('No',
+              style: TextStyle(color: Colors.red, fontSize: 20))),
+      new FlatButton(
+        child: const Text('Yes',
+            style: TextStyle(color: Colors.green, fontSize: 20)),
         onPressed: () {
           Navigator.of(context).pop();
+          showDialog(
+            context: context,
+            builder: (BuildContext context) => _confirmationDialog(context),
+          );
         },
-        textColor: Theme.of(context).primaryColor,
-        child: const Text('Close'),
       ),
     ],
   );
 }
 
-class Aligntment {}
+Widget _confirmationDialog(context) {
+  return new CupertinoAlertDialog(
+      content: new Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text("You have subscribed to a plan!",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 16,
+                ))
+          ]),
+      actions: <Widget>[
+        new FlatButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: const Text('OK',
+                style: TextStyle(color: Colors.green, fontSize: 20))),
+      ]);
+}
