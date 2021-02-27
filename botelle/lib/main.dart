@@ -5,11 +5,9 @@ import 'home.dart';
 import 'loading.dart';
 import 'login.dart';
 import 'profile.dart';
-import 'service.dart';
+import 'merchants.dart';
 
 void main() {
-  var service_test = Service();
-  service_test.httpRequest();
   runApp(MaterialApp(home: Home()));
 }
 

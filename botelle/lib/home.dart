@@ -1,4 +1,8 @@
+import 'package:botelle/subscriptions.dart';
 import 'package:flutter/material.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'merchants.dart';
+import 'qrscanner.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -13,16 +17,14 @@ class Merchant {
 }
 
 class _HomeState extends State<Home> {
-  List<Merchant> merchantList = [
-    Merchant(name: "HeyTea", imagePath: "heytea.jpg"),
-    Merchant(name: "ShareTea", imagePath: "sharetea.png"),
-    Merchant(name: "Starbucks", imagePath: "starbucks.png")
-  ];
+  int _currentIndex = 0;
+
+  var tabs = [Merchants(), QRScanner(), Subscriptions()];
+  var titles = ['Merchants', 'QRScanner', 'Subscriptions'];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffb3dee5),
       appBar: AppBar(
         title: Text(
           "BOTELLE",
@@ -44,67 +46,29 @@ class _HomeState extends State<Home> {
           )
         ],
       ),
-      body: Column(children: <Widget>[
-        Container(
-          height: 160.0,
-          margin: EdgeInsets.all(20.0),
-          child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: merchantList.length,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.only(right: 15.0),
-                  child: Container(
-                    child: ListTile(
-                      onTap: () {},
-                    ),
-                    width: MediaQuery.of(context).size.width * 2 / 3,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        // fit: BoxFit.cover, //I assumed you want to occupy the entire space of the card
-                        image: AssetImage(
-                            'assets/${merchantList[index].imagePath}'),
-                      ),
-                      color: Colors.white,
-                      borderRadius: new BorderRadius.circular(18.0),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey,
-                          offset: Offset(0.0, 1.0), //(x,y)
-                          blurRadius: 6.0,
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              }),
-        ),
-        Center(
-          child: Container(
-            height: MediaQuery.of(context).size.height * 1 / 4,
-            width: MediaQuery.of(context).size.width * 8 / 9,
-            color: Colors.amberAccent,
-          ),
-        ),
-      ]),
-      // bottomNavigationBar: BottomNavigationBar(
-
-      // ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {},
-        icon: Icon(Icons.attach_money),
-        label: Text(
-          "Pay",
-          style: TextStyle(
-            fontSize: 17.0,
-            //fontWeight: FontWeight.bold,
-            //color: Colors.grey[800],
-            //fontFamily: "KronaOne",
-          ),
-        ),
-        backgroundColor: const Color(0xffffa101),
-      ),
+      body: tabs[_currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _currentIndex,
+          type: BottomNavigationBarType.fixed,
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.shopping_basket),
+              title: Text(titles[0]),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.zoom_in),
+              title: Text(titles[1]),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.star_border),
+              title: Text(titles[2]),
+            )
+          ],
+          onTap: (index) {
+            setState(() {
+              _currentIndex = index;
+            });
+          }),
     );
-    // drawer: Drawer(),
   }
 }
