@@ -1,3 +1,4 @@
+import 'package:barcode_scan/barcode_scan.dart';
 import 'package:botelle/subscriptions.dart';
 import 'package:flutter/material.dart';
 // import 'package:curved_navigation_bar/curved_navigation_bar.dart';
@@ -72,7 +73,11 @@ class _HomeState extends State<Home> {
               title: Text(titles[2]),
             )
           ],
-          onTap: (index) {
+          onTap: (index) async {
+            if (index == 1) {
+              String codeScanner = await BarcodeScanner.scan();
+            }
+            // print(index);
             setState(() {
               _currentIndex = index;
             });

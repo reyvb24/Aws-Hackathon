@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 class Service {
-  IO.Socket socket = IO.io('http://18.163.73.5', <String, dynamic>{
+  IO.Socket socket = IO.io('http://0.0.0.0:8080', <String, dynamic>{
     'transports': ['websocket']
   });
   String initialCount =
@@ -26,15 +26,16 @@ class Service {
   Stream<String> get counterObservable => _subjectCounter.stream;
 
   void increment() {
-    httpPostRequest();
+    // httpPostRequest();
     httpRequest();
   }
 
 //Get User Data
   void httpRequest() async {
-    var url = 'http://localhost:8080/merchants';
+    var url = 'http://0.0.0.0:8080/merchants';
     // Await the http get response, then decode the json-formatted response.
     var response = await http.get(url);
+    print("hi");
     if (response.statusCode == 200) {
       var jsonResponse = convert.jsonDecode(response.body);
       var itemCount = jsonResponse;
@@ -47,7 +48,7 @@ class Service {
 
 //Post User Data
   void httpPostRequest() async {
-    var url = 'http://18.163.73.5/merchants';
+    var url = 'http://0.0.0.0:8080/merchants';
 
     Map data = {"firstName": "CodeSearch", "lastName": "Online"};
     var body = convert.json.encode(data);
