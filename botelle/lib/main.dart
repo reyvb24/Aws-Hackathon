@@ -12,6 +12,11 @@ class Botelle extends StatelessWidget {
         home: Scaffold(
           appBar: AppBar(
             title: Text("Botelle"),
+            centerTitle: true,
+          ),
+          body: Center(),
+          floatingActionButton: FloatingActionButton(
+            child: Text("Pay"),
           ),
         ));
   }
