@@ -1,0 +1,24 @@
+#!/bin/bash
+
+set -e   # exit on any error
+
+
+## Parse args
+
+check_only=
+
+if [ "$1" == "--check-only" ]; then
+    check_only=1
+fi
+
+
+## Run isort
+# Running just isort modifies ve/ which screws it up
+files=($(find server/ -name venv -prune -false -or -name ve -prune -false -or -name "*.py"))
+
+
+if [ "$check_only" ]; then
+    isort -c "${files[@]}"
+else
+    isort -y "${files[@]}"
+fi
