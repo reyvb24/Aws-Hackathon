@@ -5,9 +5,12 @@ import 'home.dart';
 import 'loading.dart';
 import 'login.dart';
 import 'profile.dart';
+import 'service.dart';
 
 void main() {
-  runApp(MaterialApp(home: QRScannner()));
+  var service_test = Service();
+  service_test.httpRequest();
+  runApp(MaterialApp(home: Home()));
 }
 
 class MyApp extends StatelessWidget {
