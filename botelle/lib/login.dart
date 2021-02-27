@@ -34,7 +34,12 @@ class _LogInState extends State<LogIn> {
                 key: _formKey,
                 child: SingleChildScrollView(
                   child: Column(children: <Widget>[
-                    //SizedBox(height: 20.0),
+                    Image(
+                      image: AssetImage('assets/bottle_logo.png'),
+                      height: 291.3,
+                      width: 106,
+                    ),
+                    SizedBox(height: 20.0),
                     Container(
                       decoration: BoxDecoration(
                         color: Colors.grey[300],
