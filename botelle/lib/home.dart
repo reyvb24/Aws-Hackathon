@@ -18,7 +18,9 @@ class Merchant {
 
 class _HomeState extends State<Home> {
   int _currentIndex = 0;
-
+  // Merchants merchants = new Merchants();
+  // QRScanner qrscanner = new QRScanner();
+  // Subscriptions subscriptions = new Subscriptions();
   var tabs = [Merchants(), QRScanner(), Subscriptions()];
   var titles = ['Merchants', 'QRScanner', 'Subscriptions'];
 
@@ -60,7 +62,7 @@ class _HomeState extends State<Home> {
               title: Text(titles[1]),
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.star_border),
+              icon: Icon(Icons.star),
               title: Text(titles[2]),
             )
           ],
