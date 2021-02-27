@@ -53,7 +53,13 @@ class _HomeState extends State<Home> {
               Container(
                   color: Colors.amber,
                   width: MediaQuery.of(context).size.width * 2 / 3),
-            ]))
+            ])),
+        Center(
+            child: Container(
+          height: MediaQuery.of(context).size.height * 1 / 4,
+          width: MediaQuery.of(context).size.width * 8 / 9,
+          color: Colors.amberAccent,
+        ))
       ]),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
