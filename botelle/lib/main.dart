@@ -8,8 +8,11 @@ void main() {
 class Botelle extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Botelle",
-      home: Home(),
-    );
+        title: "Botelle",
+        home: Scaffold(
+          appBar: AppBar(
+            title: Text("Botelle"),
+          ),
+        ));
   }
 }
