@@ -11,7 +11,16 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Botelle"),
+        centerTitle: true,
+        backgroundColor: Colors.deepOrange[600],
       ),
+      body: Center(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Text("Pay"),
+        backgroundColor: Colors.deepOrange[600],
+      ),
+      drawer: Drawer(),
     );
   }
 }
