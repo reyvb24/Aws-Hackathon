@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Subscriptions extends StatefulWidget {
@@ -21,6 +22,7 @@ class _SubscriptionsState extends State<Subscriptions> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[100],
       appBar: AppBar(
         title: Text(
           "BOTELLE",
@@ -38,132 +40,88 @@ class _SubscriptionsState extends State<Subscriptions> {
           itemCount: plans.length,
           itemBuilder: (context, index) {
             return Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 3.0, horizontal: 7.0),
-                child: Card(
-                  child: Column(
-                    children: [
+              padding:
+                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+              child: Container(
+                  decoration: BoxDecoration(
+                      color: const Color(0xffb3dee5),
+                      borderRadius: new BorderRadius.circular(18),
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.grey,
+                            offset: Offset(0.0, 1.0),
+                            blurRadius: 6)
+                      ],
+                      image: DecorationImage(
+                          alignment: Alignment(1.0, 1.0),
+                          image:
+                              AssetImage('assets/${plans[index].imagePath}'))),
+                  child:
+                      // Column(
+                      //   children: [
                       ListTile(
-                        //onTap: () {},
-                        contentPadding: EdgeInsets.fromLTRB(15.0, 10.0, 0, 0),
-                        title: Padding(
-                          padding: const EdgeInsets.fromLTRB(2.0, 10.0, 0, 0),
-                          child: Text(
-                            plans[index].name,
-                            style: TextStyle(
-                              fontSize: 22.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        subtitle: Padding(
-                          padding: const EdgeInsets.fromLTRB(2.0, 5.0, 10, 0),
-                          child: Text(
-                            plans[index].price,
-                            style: TextStyle(
-                              color: Colors.grey[700],
-                              fontSize: 14,
-                            ),
-                          ),
-                        ),
-                        // trailing: RaisedButton.icon(
-                        //     onPressed: counter2 == 0 || counter == 0 ? null : () {
-                        //       setState(() {
-                        //         counter2 = 0;
-                        //         DatabaseService(uid: user.uid).updateTempOrderData(widget.order.name, widget.order.price, widget.order.quantity, widget.order.category, counter);
-                        //       });
-                        //     },
-                        //     icon: Icon(Icons.check_box),
-                        //     label: Text(
-                        //       'CONFIRM',
-                        //       style: TextStyle(
-                        //         fontWeight: FontWeight.bold,
-                        //       ),
-                        //     ),
-                        //     splashColor: Colors.green,
-                        //     color: Colors.blue[100]),
-                        leading: CircleAvatar(
-                          radius: 50.0,
-                          backgroundImage:
-                              AssetImage('assets/${plans[index].imagePath}'),
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) =>
+                            _buildPopupDialog(context),
+                      );
+                    },
+                    contentPadding: EdgeInsets.fromLTRB(15.0, 10.0, 0, 50),
+                    title: Padding(
+                      padding: const EdgeInsets.fromLTRB(2.0, 10.0, 0, 0),
+                      child: Text(
+                        plans[index].name,
+                        style: TextStyle(
+                          fontSize: 30.0,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                      // SizedBox(height: 20),
-                      // Row(
-                      //   children: <Widget>[
-                      //     SizedBox(width: 16.0),
-                      //     Text('Total Confirmed Order : '),
-                      //     Text(
-                      //       widget.order.quantity.toString(),
-                      //       style: TextStyle(
-                      //         fontWeight: FontWeight.bold,
-                      //       ),
-                      //     ),
-                      //   ],
-                      // ),
-                      // SizedBox(height: 10),
-                      // Row(
-                      //   children: <Widget>[
-                      //     SizedBox(width: 16),
-                      //     Text('Discount                         : '),
-                      //     Text(
-                      //       "12%",
-                      //       style: TextStyle(
-                      //         fontWeight: FontWeight.bold,
-                      //         color: Colors.green,
-                      //       ),
-                      //     ),
-                      //   ],
-                      // ),
-                      // SizedBox(height: 10),
-                      // Row(
-                      //   //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      //   children: [
-                      //     Padding(
-                      //       padding: const EdgeInsets.symmetric(
-                      //           vertical: 2.0, horizontal: 10.0),
-                      //       child: Card(
-                      //         elevation: 0,
-                      //         color: Colors.amber[200],
-                      //         child: Padding(
-                      //           padding: const EdgeInsets.all(8.0),
-                      //           child: Text(
-                      //             widget.order.category,
-                      //             textAlign: TextAlign.left,
-                      //             style: TextStyle(fontWeight: FontWeight.bold),
-                      //           ),
-                      //         ),
-                      //       ),
-                      //     ),
-                      //     Spacer(),
-                      //     IconButton(
-                      //       onPressed: () {
-                      //         setState(() {
-                      //           counter += 1;
-                      //           counter2 += 1;
-                      //         });
-                      //       },
-                      //       icon: Icon(Icons.add_circle_outline),
-                      //     ),
-                      //     Text('Qty: $counter'),
-                      //     IconButton(
-                      //       onPressed: () {
-                      //         setState(() {
-                      //           if (counter > 0) {
-                      //             counter -= 1;
-                      //             counter2 -= 1;
-                      //           }
-                      //         });
-                      //       },
-                      //       icon: Icon(Icons.remove_circle_outline),
-                      //     ),
-                      //   ],
-                      // ),
-                    ],
+                    ),
+                    subtitle: Padding(
+                      padding: const EdgeInsets.fromLTRB(2.0, 5.0, 10, 0),
+                      child: Text(
+                        plans[index].price,
+                        style: TextStyle(
+                          color: Colors.grey[700],
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                  )
+                  // ],
                   ),
-                  elevation: 2.0,
-                ));
+            );
           }),
     );
   }
 }
+
+Widget _buildPopupDialog(BuildContext context) {
+  return new CupertinoAlertDialog(
+    title: Text('Confirmation',
+        style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold)),
+    content: new Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(""),
+          Text("Do you want to subscribe to this plan?",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 16,
+              ))
+        ]),
+    actions: <Widget>[
+      new FlatButton(
+        onPressed: () {
+          Navigator.of(context).pop();
+        },
+        textColor: Theme.of(context).primaryColor,
+        child: const Text('Close'),
+      ),
+    ],
+  );
+}
+
+class Aligntment {}
