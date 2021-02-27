@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 
 class Merchants extends StatefulWidget {
   @override
+  int bottleSaved = 0;
   _MerchantsState createState() => _MerchantsState();
 }
 
 class Merchant {
   String name;
   String imagePath;
-
   Merchant({this.name, this.imagePath});
 }
 
@@ -20,14 +20,13 @@ class _MerchantsState extends State<Merchants> {
     Merchant(name: "Starbucks", imagePath: "starbucks.png")
   ];
 
-  int bottleSaved = 0;
-
   void Incrementor(int n) {
-    bottleSaved += 1;
+    widget.bottleSaved += 1;
   }
 
   @override
   Widget build(BuildContext context) {
+    int currentBottle = widget.bottleSaved;
     return Scaffold(
       backgroundColor: const Color(0xffb3dee5),
       // appBar: AppBar(
@@ -92,7 +91,10 @@ class _MerchantsState extends State<Merchants> {
             width: MediaQuery.of(context).size.width * 8 / 9,
             color: Colors.amberAccent,
             child: Text(
-              "You have eliminated $bottleSaved plastic bottles",
+              "You have eliminated $currentBottle plastic bottles",
+              style: TextStyle(
+                fontSize: 35,
+              ),
             ),
           ),
         ),

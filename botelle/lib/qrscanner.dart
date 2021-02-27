@@ -8,25 +8,29 @@ import 'merchants.dart';
 
 class QRScanner extends StatefulWidget {
   @override
+  int bottleSaved = 0;
   _QRScannerState createState() => _QRScannerState();
 }
 
 class _QRScannerState extends State<QRScanner> {
   String qrCodeResult;
-  int bottleSaved = 0;
   @override
   Widget build(BuildContext context) {
+    int currentBottle = widget.bottleSaved;
     return Scaffold(
         body: Center(
       child: RaisedButton(
-        child: Text('You have eliminated $bottleSaved plastic bottles'),
+        child: Text(
+          'You have eliminated $currentBottle plastic bottles',
+        ),
         padding: EdgeInsets.all(8.0),
         onPressed: () async {
           print("hello!");
           String codeScanner = await BarcodeScanner.scan();
           qrCodeResult = codeScanner;
           setState(() {
-            bottleSaved += 1;
+            widget.bottleSaved += 1;
+            currentBottle = widget.bottleSaved;
           });
           print(qrCodeResult);
         },

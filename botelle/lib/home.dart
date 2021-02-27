@@ -18,7 +18,9 @@ class Merchant {
 
 class _HomeState extends State<Home> {
   int _currentIndex = 0;
-
+  // Merchants merchants = new Merchants();
+  // QRScanner qrscanner = new QRScanner();
+  // Subscriptions subscriptions = new Subscriptions();
   var tabs = [Merchants(), QRScanner(), Subscriptions()];
   var titles = ['Merchants', 'QRScanner', 'Subscriptions'];
 
