@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'home.dart';
-import 'home.dart';
+import 'loading.dart';
+import 'login.dart';
 
 void main() {
   runApp(MaterialApp(home: Home()));
@@ -8,6 +9,9 @@ void main() {
 
 class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
-    return Scaffold();
+    return MaterialApp(
+      title: "Botelle",
+      home: LogIn(),
+    );
   }
 }
