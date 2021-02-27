@@ -1,6 +1,6 @@
 import 'package:botelle/subscriptions.dart';
 import 'package:flutter/material.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+// import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'merchants.dart';
 import 'qrscanner.dart';
 

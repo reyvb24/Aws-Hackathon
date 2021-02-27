@@ -8,7 +8,7 @@ import 'profile.dart';
 import 'merchants.dart';
 
 void main() {
-  runApp(MaterialApp(home: Subscriptions()));
+  runApp(MaterialApp(home: Home()));
 }
 
 class MyApp extends StatelessWidget {

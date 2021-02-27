@@ -10,14 +10,24 @@ class Plan {
   String name;
   String price;
   String imagePath;
+  bool subscribed;
 
-  Plan({this.name, this.price, this.imagePath});
+  Plan({this.name, this.price, this.imagePath, this.subscribed});
 }
 
 class _SubscriptionsState extends State<Subscriptions> {
+  bool subscribed = false;
   List<Plan> plans = [
-    Plan(name: "Coffee-holic", price: "HK\$100", imagePath: "coffee.png"),
-    Plan(name: "Stay Hydrated!", price: "HK\$50", imagePath: "water.png")
+    Plan(
+        name: "Coffee-holic",
+        price: "HK\$100",
+        imagePath: "coffee.png",
+        subscribed: false),
+    Plan(
+        name: "Stay Hydrated!",
+        price: "HK\$50",
+        imagePath: "water.png",
+        subscribed: false)
   ];
   @override
   Widget build(BuildContext context) {
@@ -61,11 +71,89 @@ class _SubscriptionsState extends State<Subscriptions> {
                       //   children: [
                       ListTile(
                     onTap: () {
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) =>
-                            _buildPopupDialog(context),
-                      );
+                      if (subscribed == false) {
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) =>
+                                new CupertinoAlertDialog(
+                                  title: Text('Confirmation',
+                                      style: TextStyle(
+                                          fontSize: 19,
+                                          fontWeight: FontWeight.bold)),
+                                  content: new Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        Text(""),
+                                        Text(
+                                            "Do you want to subscribe to this plan?",
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                            ))
+                                      ]),
+                                  actions: <Widget>[
+                                    new FlatButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        // textColor: Theme.of(context).primaryColor,
+                                        child: const Text('No',
+                                            style: TextStyle(
+                                                color: Colors.red,
+                                                fontSize: 20))),
+                                    new FlatButton(
+                                      child: const Text('Yes',
+                                          style: TextStyle(
+                                              color: Colors.green,
+                                              fontSize: 20)),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                        showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) =>
+                                                new CupertinoAlertDialog(
+                                                    content: new Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.min,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: <Widget>[
+                                                          Text(
+                                                              "You have subscribed to a plan!",
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .center,
+                                                              style: TextStyle(
+                                                                fontSize: 16,
+                                                              ))
+                                                        ]),
+                                                    actions: <Widget>[
+                                                      new FlatButton(
+                                                          onPressed: () {
+                                                            Navigator.of(
+                                                                    context)
+                                                                .pop();
+                                                            plans[index]
+                                                                    .subscribed =
+                                                                true;
+                                                            subscribed = true;
+                                                          },
+                                                          child: const Text(
+                                                              'OK',
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .green,
+                                                                  fontSize:
+                                                                      20))),
+                                                    ]));
+                                      },
+                                    ),
+                                  ],
+                                ));
+                      }
                     },
                     contentPadding: EdgeInsets.fromLTRB(15.0, 10.0, 0, 50),
                     title: Padding(
@@ -78,16 +166,26 @@ class _SubscriptionsState extends State<Subscriptions> {
                         ),
                       ),
                     ),
-                    subtitle: Padding(
-                      padding: const EdgeInsets.fromLTRB(2.0, 5.0, 10, 0),
-                      child: Text(
-                        plans[index].price,
-                        style: TextStyle(
-                          color: Colors.grey[700],
-                          fontSize: 16,
-                        ),
-                      ),
-                    ),
+                    subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        // padding: const EdgeInsets.fromLTRB(2.0, 5.0, 10, 0),
+                        children: [
+                          Text(
+                            " " + plans[index].price,
+                            style: TextStyle(
+                              color: Colors.grey[700],
+                              fontSize: 16,
+                            ),
+                          ),
+                          if (plans[index].subscribed == true)
+                            Text(
+                              " You have subscribed to this plan",
+                              style: TextStyle(
+                                color: Colors.grey[700],
+                                fontSize: 16,
+                              ),
+                            ),
+                        ]),
                   )
                   // ],
                   ),
@@ -97,62 +195,63 @@ class _SubscriptionsState extends State<Subscriptions> {
   }
 }
 
-Widget _buildPopupDialog(BuildContext context) {
-  return new CupertinoAlertDialog(
-    title: Text('Confirmation',
-        style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold)),
-    content: new Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(""),
-          Text("Do you want to subscribe to this plan?",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 16,
-              ))
-        ]),
-    actions: <Widget>[
-      new FlatButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          // textColor: Theme.of(context).primaryColor,
-          child: const Text('No',
-              style: TextStyle(color: Colors.red, fontSize: 20))),
-      new FlatButton(
-        child: const Text('Yes',
-            style: TextStyle(color: Colors.green, fontSize: 20)),
-        onPressed: () {
-          Navigator.of(context).pop();
-          showDialog(
-            context: context,
-            builder: (BuildContext context) => _confirmationDialog(context),
-          );
-        },
-      ),
-    ],
-  );
-}
+// Widget _buildPopupDialog(BuildContext context) {
+//   return new CupertinoAlertDialog(
+//     title: Text('Confirmation',
+//         style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold)),
+//     content: new Column(
+//         mainAxisSize: MainAxisSize.min,
+//         crossAxisAlignment: CrossAxisAlignment.start,
+//         children: <Widget>[
+//           Text(""),
+//           Text("Do you want to subscribe to this plan?",
+//               textAlign: TextAlign.center,
+//               style: TextStyle(
+//                 fontSize: 16,
+//               ))
+//         ]),
+//     actions: <Widget>[
+//       new FlatButton(
+//           onPressed: () {
+//             Navigator.of(context).pop();
+//           },
+//           // textColor: Theme.of(context).primaryColor,
+//           child: const Text('No',
+//               style: TextStyle(color: Colors.red, fontSize: 20))),
+//       new FlatButton(
+//         child: const Text('Yes',
+//             style: TextStyle(color: Colors.green, fontSize: 20)),
+//         onPressed: () {
+//           Navigator.of(context).pop();
+//           showDialog(
+//             context: context,
+//             builder: (BuildContext context) => _confirmationDialog(context),
+//           );
+//         },
+//       ),
+//     ],
+//   );
+// }
 
-Widget _confirmationDialog(context) {
-  return new CupertinoAlertDialog(
-      content: new Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text("You have subscribed to a plan!",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 16,
-                ))
-          ]),
-      actions: <Widget>[
-        new FlatButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: const Text('OK',
-                style: TextStyle(color: Colors.green, fontSize: 20))),
-      ]);
-}
+// Widget _confirmationDialog(context) {
+//   return new CupertinoAlertDialog(
+//       content: new Column(
+//           mainAxisSize: MainAxisSize.min,
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           children: <Widget>[
+//             Text("You have subscribed to a plan!",
+//                 textAlign: TextAlign.center,
+//                 style: TextStyle(
+//                   fontSize: 16,
+//                 ))
+//           ]),
+//       actions: <Widget>[
+//         new FlatButton(
+//             onPressed: () {
+//               Navigator.of(context).pop();
+//               subscribed = true;
+//             },
+//             child: const Text('OK',
+//                 style: TextStyle(color: Colors.green, fontSize: 20))),
+//       ]);
+// }
